@@ -1,5 +1,5 @@
-import { ObjectId } from "bson";
 import { client } from "../db.js";
+import { ObjectId } from "bson";
 
 export function getAllStudents(req){
     return client
@@ -10,10 +10,10 @@ export function getAllStudents(req){
 }
 
 export function getStudentbyId(id){
-    return client
-    .db("bootcamp")
-    .collection("students")
-    .findOne({_id: new ObjectId(id)})
+  return client
+  .db("bootcamp")
+  .collection("students")
+  .findOne({_id: new ObjectId(id)})
 }
 
 export function addStudent(data){
@@ -23,17 +23,16 @@ export function addStudent(data){
     .insertOne(data);
 }
 
-export function editStudentbyId(id, data){
-    return client
-    .db("bootcamp")
-    .collection("students")
-    .findOneAndUpdate({_id: new ObjectId(id)}, {$set:data});
+export function editStudentbyId(id,data){
+  return client
+  .db("bootcamp")
+  .collection("students")
+  .findOneAndUpdate({_id: new ObjectId(id)}, {$set:data});
 }
 
-export function deleteStudentbyId(id)
-{
-    return client
-    .db("bootcamp")
-    .collection("students")
-    .findOneAndDelete({_id: new ObjectId(id)})
+export function deleteStudentbyId(id){
+  return client
+  .db("bootcamp")
+  .collection("students")
+  .findOneAndDelete({_id: new ObjectId(id)})
 }
