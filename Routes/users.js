@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import { addUser, getUser } from "../Controllers/users.js";
+import { generateToken } from "../Controllers/users.js";
 
 const router = express.Router();
 
@@ -60,7 +61,8 @@ router.post("/login", async (req, res)=>
         {
             return res.status(400).send({message: "Invalid Password"});
         }
-        res.status(200).send(user);
+        const token = generateToken(user._id);
+        res.status(200).send({data:user, token:token});
     }
     catch(error)
     {
