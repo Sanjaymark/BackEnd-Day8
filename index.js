@@ -3,6 +3,7 @@ import {studentRouter} from "./Routes/students.js"
 import dotenv from "dotenv"
 import { userRouter } from "./Routes/users.js";
 import { isAuthenticated } from "./Authentication/auth.js";
+import cors from "cors";
 
 //initializing express server
 const app = express();
@@ -14,7 +15,7 @@ const PORT = process.env.PORT;
 
 //middlewares
 app.use(express.json());
-
+app.use(cors())
 
 // application routes 
 app.use("/students",isAuthenticated, studentRouter)
